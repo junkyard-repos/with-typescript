@@ -1,18 +1,18 @@
-<template>
-	<div>
-		<h1>{{}}</h1>
-	</div>
+<template lang="pug">
+div
+	h1 {{ user.lastName }}
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import { User } from "../types";
+import { User, SuperUser } from "../types";
 
 export default Vue.extend({
 	name: "Home",
 	data() {
 		return {
 			user: {} as User,
+			superUser: {} as SuperUser,
 		};
 	},
 	computed: {
@@ -21,15 +21,17 @@ export default Vue.extend({
 		},
 	},
 	mounted(): void {
-		// this.user = {
-		// 	firstName: `Sammy`,
-		// 	lastName: `Shark`,
-		// 	twitterHandle: `@digitalocean`,
-		// 	location: {
-		// 		city: `New York City`,
-		// 		state: `NY`,
-		// 	},
-		// };
+		this.user = {
+			firstName: `Sammy`,
+			lastName: `Shark`,
+			twitterHandle: `@digitalocean`,
+			location: {
+				city: `New York City`,
+				state: `NY`,
+			},
+		};
+
+		this.superUser = new SuperUser(this.user, 'looser', 'stupid', 99)
 	},
 });
 </script>
